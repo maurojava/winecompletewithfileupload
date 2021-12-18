@@ -23,7 +23,7 @@ window.utils = {
         var data = new FormData();
         data.append('file', file);
         $.ajax({
-            url: 'rest/wines/fileupload',
+            url: 'rest/wines/uploadFile',
      enctype:"multipart/form-data",
             type: 'POST',
             data: data,
