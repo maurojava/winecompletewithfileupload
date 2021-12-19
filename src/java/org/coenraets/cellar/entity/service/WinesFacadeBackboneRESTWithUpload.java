@@ -35,12 +35,12 @@ import javax.ws.rs.core.Response;
  */
 @Stateless
 @Path("wines")
-public class WinesFacadeBackboneREST extends AbstractFacade<Wine> {
+public class WinesFacadeBackboneRESTWithUpload extends AbstractFacade<Wine> {
 
     @PersistenceContext(unitName = "winecellarPU")
     private EntityManager em;
 
-    public WinesFacadeBackboneREST() {
+    public WinesFacadeBackboneRESTWithUpload() {
         super(Wine.class);
     }
 
@@ -137,65 +137,7 @@ public class WinesFacadeBackboneREST extends AbstractFacade<Wine> {
     }
     
     
-   /* OLD method with path hard-coded
-    @POST
-    @Path("uploadFile")
-    @Consumes(MediaType.MULTIPART_FORM_DATA)
-    public Response uploadFile(List<org.apache.cxf.jaxrs.ext.multipart.Attachment> attachments, @Context HttpServletRequest request, @Context ServletContext servletContext) {
-        for (org.apache.cxf.jaxrs.ext.multipart.Attachment attachment : attachments) {
-            DataHandler handler = attachment.getDataHandler();
-            try {
-                InputStream stream = handler.getInputStream();
-                MultivaluedMap<String, String> map = attachment.getHeaders();
-                System.out.println("fileName Here" + getFileName(map));
-               
-        /*                
-         String pathcontext =       servletContext.getRealPath("/");
-                System.out.println("il path è="+pathcontext);
-              //  String fileSeparator = FileSystems.getDefault().getSeparator();
-                
-            
-                    System.out.println("ilfileSeparator è="+  File.separator);
-                String percorsocartellaupload=pathcontext +"upload"+File.separator;
-                 System.out.println("percorso completo cartella upload è="+percorsocartellaupload);
-                
-              //   OutputStream out = new FileOutputStream(new File("C:\\Users\\mauro\\Desktop\\upload\\" + getFileName(map)));
-               // OutputStream out = new FileOutputStream(new File("C:\\Users\\Documents\\NetBeansProjects\\prog_nb_12.5_cxf_fileupload\\backbone-cellar-fileupload\\public_html\\pics\\" + getFileName(map)));
-
-            //    OutputStream out = new FileOutputStream(new File("C:\\Users\\mauro\\Desktop\\upload\\" + getFileName(map)));
-//OutputStream out = new FileOutputStream(new File("C:\\Users\\mauro\\Documents\\NetBeansProjects\\prog_nb_12.5_cxf_fileupload\\test\\build\\web\\upload\\" + getFileName(map)));
- // OutputStream out = new FileOutputStream(new File("C:\\Users\\mauro\\Desktop\\upload\\" + getFileName(map)));
-               // OutputStream out = new FileOutputStream(new File("C:\\Users\\Documents\\NetBeansProjects\\prog_nb_12.5_cxf_fileupload\\backbone-cellar-fileupload\\public_html\\pics\\" + getFileName(map)));
-String nomefile= getFileName(map);
-String percorsototalefile=percorsocartellaupload+nomefile;
- System.out.println("percorsototalefile è="+percorsototalefile);
-
-        String nomefile= getFileName(map);
-             String percorsocartella="C:\\Users\\mauro\\Documents\\NetBeansProjects\\prog_nb_12.5_contqcts.manager\\semprewinecellar\\public_html\\upload\\";   
-    String percorsototalefile=percorsocartella+nomefile;
-
-//OutputStream out = new FileOutputStream(new File(percorsocartellaupload + getFileName(map)));                                                  
-   OutputStream out = new FileOutputStream(
-           
-           new File(percorsototalefile));                                                  
-             
-                int read = 0;
-                byte[] bytes = new byte[1024];
-                while ((read = stream.read(bytes)) != -1) {
-                    out.write(bytes, 0, read);
-                }
-                stream.close();
-                out.flush();
-                out.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        return Response.ok("file uploaded").build();
-    }
- */
-    
+  
     // method with path setted with servletContext
     @POST
     @Path("uploadFile")
