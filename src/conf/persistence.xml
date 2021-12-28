@@ -14,10 +14,12 @@
            <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDB103Dialect"/>
         <!--     <property name="transaction.factory_class" value="org.hibernate.transaction.JTATransactionFactory"/>
         -->
-           
+         <!--  
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.use_sql_comments" value="true"/>     
+            <property name="hibernate.use_sql_comments" value="true"/> 
+            -->   
+          <!--     <property name="hibernate.generate_statistics" value="true"/>   --> 
            <!--  enable this 2 following properties only for hibernate .  -->
             <property name="tomee.jpa.cdi" value="false"/> 
             <property name="tomee.jpa.factory.lazy" value="true"/>

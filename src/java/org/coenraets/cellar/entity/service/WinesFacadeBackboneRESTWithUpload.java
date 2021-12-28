@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.nio.file.FileSystems;
 import java.util.List;
+
 import javax.activation.DataHandler;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -29,6 +30,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedMap;
 import org.coenraets.cellar.entity.Wine;
 import javax.ws.rs.core.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  *
  * @author mauro
@@ -36,6 +40,7 @@ import javax.ws.rs.core.Response;
 @Stateless
 @Path("wines")
 public class WinesFacadeBackboneRESTWithUpload extends AbstractFacade<Wine> {
+ Logger logger = LoggerFactory.getLogger(WinesFacadeBackboneRESTWithUpload.class);
 
     @PersistenceContext(unitName = "winecellarPU")
     private EntityManager em;
@@ -116,6 +121,8 @@ public class WinesFacadeBackboneRESTWithUpload extends AbstractFacade<Wine> {
     @Override
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Wine> findAll() {
+        logger.trace("trace message : called the method for get all wines...");
+           logger.debug("debug message:  called the method for get all wines...");
         return super.findAll();
     }
     @GET
@@ -152,7 +159,7 @@ public class WinesFacadeBackboneRESTWithUpload extends AbstractFacade<Wine> {
                
                         
         String pathUploadDir =       servletContext.getRealPath("/pics/");
-          
+         logger.info("il path della dir è:"+pathUploadDir);
         System.out.println("the  path of upload dir is = "+pathUploadDir);
                      
           
@@ -161,7 +168,7 @@ public class WinesFacadeBackboneRESTWithUpload extends AbstractFacade<Wine> {
 String pathFinalOfFile=pathUploadDir+namefile;
 
  System.out.println("pathFinalOfFile is= "+pathFinalOfFile);
-                
+         logger.info("il pathFinaledel fFile è = "+pathFinalOfFile);        
                                                  
    OutputStream out = new FileOutputStream(
            
